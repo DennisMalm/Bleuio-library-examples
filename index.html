@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Smart Sensor Devices Web Bluetooth Example</title>
+    <meta charset="utf-8" />
+    <meta name="ssd" content="beaconexample" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="shortcut icon" type="image/png" href="images/favicon.png" />
+    <link rel="stylesheet" href="style.css" />
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+
+
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <div class="codesection">
+      <div class="container">
+        <h1>Web Bluetooth Example</h1>
+        <main class="main">
+          <div id="notSupported" class="hidden alert alert-danger">
+            Sorry, <b>Web Serial</b> is not supported on this device, make sure
+            you're running Chrome 78 or later and have enabled the
+            <code>#enable-experimental-web-platform-features</code> flag in
+            <code>chrome://flags</code> <br />
+            Open
+            <strong>
+              chrome://flags/#enable-experimental-web-platform-features</strong
+            >
+            in Google Chrome browser.
+          </div>
+
+          <br />
+          <button id="butConnect" type="button" class="btn btn-success">
+            Connect
+          </button>
+          <br /><br />
+          <button
+            id="butIbeacon"
+            type="button"
+            disabled
+            class="btn btn-warning"
+          >
+            Make iBeacon
+          </button>
+          <button id="butEddystone" type="button" disabled class="btn btn-info">
+            Make Eddystone Beacon
+          </button>
+          <button id="butScan" type="button" disabled class="btn btn-primary">
+            Scan BLE Devices
+          </button>
+
+          <pre id="logg" class="mt-5 d-none"></pre>
+          <ul id='log'></ul>
+        </main>
+      </div>
+    </div>
+  </body>
+</html>
