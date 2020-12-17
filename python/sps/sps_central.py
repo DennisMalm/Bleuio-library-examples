@@ -42,34 +42,30 @@ if "Central role" not in str(my_dongle.at_gapstatus()):
 my_dongle.at_gapconnect(target_device_address)
 # Fetch information about the connection
 response = my_dongle.rx_response
+
 try:
     time_out_counter = 0
 
     while not connected_to_peripheral:
         # Checks if a connection been made
         if 'CONNECTED.' in str(response):
-            print('\nConnected to {}'.format(target_device_address))
-
-            message = input('\nEnter a message to send to the peripheral:\n')
-
-            # Sends provided message to the connected device
-            my_dongle.at_spssend(message)
-
             connected_to_peripheral = True
-
-            # Disconnects from the connected device
-            my_dongle.at_gapdisconnect()
-            my_dongle.stop_daemon()
-            exit()
-
+            print('\nConnected to {}'.format(target_device_address))
         # Tries to connect 5 times
         elif time_out_counter < 5:
+            print('Trying to connect to target device')
             sleep(3)
-            print('Trying to connect to target device')  # //TODO det går väl att skicka till vilken enhet som helst?
             time_out_counter += 1
         else:
             print('Connection timed out')
             break
+
+    if connected_to_peripheral:
+        message = input('\nEnter a message to send to the peripheral:\n')
+        # Sends provided message to the connected device
+        print(my_dongle.at_spssend(message))
+
+        print('printas inte ut')
 
     # Disconnects and stops the dongle
     my_dongle.at_gapdisconnect()

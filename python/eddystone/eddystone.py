@@ -6,6 +6,47 @@ import re
 my_dongle = None
 connected = False
 eddystone_pattern = re.compile(r'^(?=.*\d)[A-Za-z:\d]{2,172}$')
+node_modules/
+.cache
+.dist
+
+js/eddyStoneBeacon/.cache/
+js/eddyStoneBeacon/node_modules/
+js/eddyStoneBeacon/dist/
+js/eddyStoneBeacon/package.json
+js/eddyStoneBeacon/package-lock.json
+js/iBeacon/.cache/
+js/iBeacon/node_modules/
+js/iBeacon/dist/
+js/iBeacon/package.json
+js/iBeacon/package-lock.json
+js/scan/.cache/
+js/scan/node_modules/
+js/scan/dist/
+js/scan/package.json
+js/scan/package-lock.json
+js/scanTarget/.cache/
+js/scanTarget/node_modules/
+js/scanTarget/dist/
+js/scanTarget/package.json
+js/scanTarget/package-lock.json
+js/sps/.cache/
+js/sps/node_modules/
+js/sps/dist/
+js/sps/package.json
+js/sps/package-lock.json
+js/sps/term/
+js/sps/.vscode/
+python/eddystone/venv/
+python/eddystone/.idea/
+python/sps/venv/
+python/sps/.idea/
+python/scan_and_store/venv/
+python/scan_and_store/.idea/
+python/scan/venv/
+python/scan/.idea/
+python/iBeacon/venv/
+python/iBeacon/.idea/
 
 while not connected:
     try:

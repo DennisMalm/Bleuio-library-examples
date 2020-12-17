@@ -86,7 +86,8 @@ try:
             # Prints the result
             while True:
                 # //todo går det att hålla consistency och inte använda print()?
-                print(my_dongle.at_scantarget(device_address))  # scans after a device with entered address
+                # Scans after a device with entered address
+                print(my_dongle.at_scantarget(device_address))
 
         else:
             device_address = input(

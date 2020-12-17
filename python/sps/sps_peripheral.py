@@ -13,7 +13,7 @@ connected_to_central = False
 while not connected_to_dongle:
     try:
         # Specify the COM PORT connected to the dongle
-        my_dongle = BleuIo(port='COM6')
+        my_dongle = BleuIo(port='COM5')
         # Start the deamon (background process handler) for RX and TX data.
         my_dongle.start_daemon()
 
@@ -25,7 +25,6 @@ while not connected_to_dongle:
 print('Connected to dongle\n\n'
       'Welcome to the BleuIO SPS example!\n\n')  # //TODO byt namn på de andra
 
-
 # Set the dongle in peripheral role if not already set
 if "Peripheral role" not in str(my_dongle.at_gapstatus()):
     my_dongle.at_peripheral()
@@ -35,7 +34,7 @@ my_dongle.at_advstart()
 
 try:
     time_out_counter = 0
-
+    i = 0
     while not connected_to_central:
         # Get information from the dongle
         # to see if it's connected to the central
@@ -43,16 +42,24 @@ try:
 
         # Checks for information about connection
         if '\\nConnected\\r' in str(status):
-            print('\nConnected to {}'.format("central"))
+            print('\nConnected to central')
+            while True:
+                # Listen for a received message
+                response = str(my_dongle.rx_buffer)
+                if 'Received' in response:
+                    # Clean up the response
+                    response = response.replace('b\'\\r\\n', '')
+                    response = response.replace('b\'\'', '')
+                    response = response.replace('\\r\\n\'', '')
+                    response = response.replace('\\n', '')
+                    response = response.replace('\\r\\r', '\n')
 
-            # TODO fixa
-            print(my_dongle._serial.read(my_dongle._serial.inWaiting()).decode())
+                    print(response)
+                    sleep(3)
 
-            # Disconnects and stops the dongle
-            my_dongle.at_gapdisconnect()
-            my_dongle.stop_daemon()
+        print('Trying to connect to central')
 
-        # sleep(2)
+        sleep(2)
 
 except KeyboardInterrupt:
     # Disconnects and stops the dongle
